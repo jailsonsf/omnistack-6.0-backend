@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -9,23 +10,23 @@ app.use(cors());
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-io.on('connection', socket => {
-    socket.on('connectRoom', box => {
-        socket.join(box);
-    })
+io.on('connection', (socket) => {
+  socket.on('connectRoom', (box) => {
+    socket.join(box);
+  });
 });
 
 mongoose.connect(
-    'mongodb://localhost:27017/omnistack', 
-    { 
-        useNewUrlParser: true
-    }
+  'mongodb://localhost:27017/omnistack',
+  {
+    useNewUrlParser: true,
+  },
 );
 
 app.use((req, res, next) => {
-    req.io = io;
+  req.io = io;
 
-    return next();
+  return next();
 });
 
 app.use(express.json());
